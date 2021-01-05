@@ -4,6 +4,9 @@ metadata:
   name: nfs-pod-provisioner
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: nfs-pod-provisioner
   strategy:
     type: Recreate
   template:
