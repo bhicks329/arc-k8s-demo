@@ -16,7 +16,8 @@ spec:
         app: nginx
     spec:
       nodeSelector:
-        kubernetes.io/hostname: srv02
+        kubernetes.io/arch: amd64
+        kubernetes.io/os: linux
       volumes:
       - name: nfs-test #
         persistentVolumeClaim:
