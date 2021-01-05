@@ -21,9 +21,9 @@ spec:
         kubernetes.io/arch: amd64
         kubernetes.io/os: linux
       volumes:
-      - name: hoobs-data #
+      - name: hoobs-data
         persistentVolumeClaim:
-          claimName: hoobs-data
+          claimName: hoobs-nfs-data
       containers:
       - name: hoobs
         image: hoobs/hoobs
