@@ -20,7 +20,7 @@ spec:
       volumes:
       - name: nfs-test #
         persistentVolumeClaim:
-          claimName: nfs-pvc-test  # same name of pvc that was created
+          claimName: pvc-nfs-dynamic  # same name of pvc that was created
       containers:
       - image: nginx
         name: nginx
