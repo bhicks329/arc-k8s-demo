@@ -39,6 +39,8 @@ spec:
           limits:
             memory: "2048Mi"
             cpu: "2000m"
+      priorityClassName: high-priority
+      
 ---
 apiVersion: v1
 kind: Service
