@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hoobs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hoobs
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5 
+  template:
+    metadata:
+      labels:
+        app: hoobs
+    spec:
+      nodeSelector:
+        kubernetes.io/arch: amd64
+        kubernetes.io/os: linux
+      volumes:
+      - name: hoobs-data #
+        persistentVolumeClaim:
+          claimName: hoobs-data
+      containers:
+      - name: hoobs
+        image: hoobs/hoobs
+        volumeMounts:
+        - name: hoobs-data
+          mountPath: hoobs
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "1000m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hoobs
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8080
+  selector:
+    app: hoobs
