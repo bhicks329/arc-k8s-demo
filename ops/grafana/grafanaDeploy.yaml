@@ -29,7 +29,6 @@ spec:
           subPath: datasource.yaml
         securityContext:
           runAsUser: 472
-          fsGroup: 472
       volumes:
       - name: grafana-persistent-storage-store
         persistentVolumeClaim:
