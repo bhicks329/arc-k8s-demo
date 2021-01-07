@@ -14,9 +14,13 @@ spec:
      labels:
        env: visuals
     spec:
+      securityContext:
+          runAsUser: 472
+          fsGroup: 472
       containers:
       - name: grafana
         image: grafana/grafana
+
         # args:
         # - '--config=/grafana.ini'
         ports:
@@ -27,8 +31,6 @@ spec:
         - name: grafana-script
           mountPath: /etc/grafana/provisioning/datasources/datasource.yaml
           subPath: datasource.yaml
-        securityContext:
-          runAsUser: 472
       volumes:
       - name: grafana-persistent-storage-store
         persistentVolumeClaim:
