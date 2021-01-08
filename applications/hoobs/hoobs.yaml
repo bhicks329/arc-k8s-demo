@@ -77,3 +77,16 @@ spec:
     protocol: UDP
   selector:
     app: hoobs
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hoobs-mdns
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 50341
+    targetPort: 50341
+    protocol: UDP
+  selector:
+    app: hoobs
