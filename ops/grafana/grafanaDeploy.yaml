@@ -17,6 +17,7 @@ spec:
       securityContext:
           runAsUser: 472
           fsGroup: 472
+          runAsGroup: 472
       containers:
       - name: grafana
         image: grafana/grafana
