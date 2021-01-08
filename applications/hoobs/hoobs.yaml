@@ -64,3 +64,16 @@ spec:
     targetPort: 51826
   selector:
     app: hoobs
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hoobs-mdns
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 5353
+    targetPort: 5353
+    protocol: UDP
+  selector:
+    app: hoobs
