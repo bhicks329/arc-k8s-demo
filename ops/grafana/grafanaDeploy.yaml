@@ -14,10 +14,14 @@ spec:
      labels:
        env: visuals
     spec:
-      securityContext:
-          runAsUser: 472
-          fsGroup: 472
-          runAsGroup: 472
+      initContainers:
+        - name: init-chown-data
+          image: busybox
+          imagePullPolicy: IfNotPresent
+          command: ["chown", "-R", "472:472", "/data"]
+          volumeMounts:
+          - mountPath: /data
+            name: grafana-data
       containers:
       - name: grafana
         image: grafana/grafana
